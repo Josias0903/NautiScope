@@ -66,8 +66,28 @@ async function loginUser(request, response) {
         }
     });
 }
+const connection = require('../config/db')
+
+async function getConteudo(request, response) {
+    let query = "SELECT * FROM Polygon2Data;";
+
+    connection.query(query, (err, results) => {
+        console.log(err, results)
+        if(results) {
+            response
+                .status(200)
+                .json({
+                    success: true,
+                    message: "cebolas choram e sua vitoria é celebrada",
+                    data: results
+                })
+        }
+    })
+}
+
 
 module.exports = {
     storeUser,
+    getConteudo,
     loginUser
 }
