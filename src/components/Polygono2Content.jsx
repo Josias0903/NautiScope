@@ -1,78 +1,45 @@
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Poligono.css';
+import './Poligono.css'; // Importando o CSS
 
-// function Polygon2Content() {
-//   const navigate = useNavigate();
+const Polygono2Content = () => {
+    const [polygonData, setPolygonData] = useState(null);
 
-//   return (
-//     <div className="polygon-content">
-//       <div className="polygon-card">
-//         <h2>Cadeia Vitória-Trindade</h2>
-//       </div>
+    useEffect(() => {
+        axios.get('http://localhost:3005/api/pulldata/')
+            .then(response => {
+                setPolygonData(response.data);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados do banco de dados', error);
+            });
+    }, []);
 
-//       <div className="polygon-card">
-//         <img src="/images/polygon-placeholder1.png" alt="Formação da Cadeia Vitória-Trindade" className="polygon-image" />
-//         <p className="polygon-description">
-//           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, esse sequi, hic, excepturi enim voluptates totam eaque cumque nisi illum laudantium nemo inventore repudiandae! Sequi quae nulla ratione veniam ex?
-//         </p>
-//       </div>
+    if (!polygonData) {
+        return <p>Carregando...</p>;
+    }
 
-//       <div className="polygon-card">
-//         <img src="/images/polygon-placeholder2.png" alt="Dados Batimétricos da Cadeia Vitória-Trindade" className="polygon-image" />
-//         <p className="polygon-description">
-//           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus corporis voluptates illo dolores non fugit quod perferendis nam? Optio, animi! Repellendus, dicta quos autem ratione earum maiores possimus perferendis dolores?
-//         </p>
-//       </div>
+    if (!polygonData.data || !Array.isArray(polygonData.data)) {
+        return <p>Nenhum dado encontrado ou dados inválidos.</p>;
+    }
 
-//       <div className="polygon-card">
-//         <p className="polygon-description">
-//           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut autem eos reiciendis recusandae, repellat quaerat mollitia dolor, modi assumenda asperiores, necessitatibus architecto rerum earum. Magni neque numquam eius excepturi nisi.
-//         </p>
-//       </div>
+    return (
+        <div className="polygon-content">
+            <h1>Cadeia Vitória Trindade</h1>
+            {polygonData.data.map((polygon, index) => (
+                <div key={index} className="polygon-card">
+                    <h3>{polygon.title}</h3>
+                    <img 
+                        src={polygon.image_url} 
+                        alt={polygon.title} 
+                        className="polygon-image"
+                    />
+                    <p className="polygon-description">{polygon.description}</p>
+                </div>
+            ))}
+            <a href="/" className="back-button">Voltar</a>
+        </div>
+    );
+};
 
-//       <div className="polygon-card">
-//         <img src="/images/polygon-placeholder3.png" alt="Biodiversidade Marinha da Cadeia Vitória-Trindade" className="polygon-image" />
-//         <p className="polygon-description">
-//           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sequi, nobis et harum, repellendus dolorum culpa nihil soluta quae molestiae nesciunt voluptatum, obcaecati error molestias explicabo debitis iure. Aspernatur, earum.
-//         </p>
-//       </div>
-
-//       <div className="polygon-card">
-//         <p className="polygon-description">
-//           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis deleniti enim, aperiam nostrum dicta veniam sunt ad atque delectus hic maxime. Sapiente nostrum, corporis magnam distinctio minima necessitatibus. Modi, autem.
-//         </p>
-//       </div>
-
-
-//       <button className="back-button" onClick={() => navigate('/data')}>
-//         Voltar ao Mapa
-//       </button>
-//     </div>
-//   );
-// }
-function Polygon2Content() {
-  const navigate = useNavigate();
-  const baseURL = "http://localhost:3005/api/polygonContent";
-
-  const [post, setPost] = React.useState(null);
-
-  React.useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setPost(response.data);
-    });
-  }, []);
-
-  if (!post) return null;
-
-  return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-    </div>
-  );
-}
-
-
-export default Polygon2Content;
+export default Polygono2Content;

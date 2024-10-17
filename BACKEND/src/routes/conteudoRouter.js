@@ -3,6 +3,6 @@ const router = Router();
 
 const { getConteudo } = require('../controller/usersController');
 
-router.get('/pullData', polygonData); //
+router.get('/pullData', getConteudo); 
 
 module.exports = router;

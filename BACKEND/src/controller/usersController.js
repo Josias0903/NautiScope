@@ -66,10 +66,10 @@ async function loginUser(request, response) {
         }
     });
 }
-const connection = require('../config/db')
+
 
 async function getConteudo(request, response) {
-    let query = "SELECT * FROM Polygon2Data;";
+    let query = "SELECT * FROM Polygon2Data, Polygon1Data;";
 
     connection.query(query, (err, results) => {
         console.log(err, results)
