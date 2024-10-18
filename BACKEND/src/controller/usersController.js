@@ -68,8 +68,8 @@ async function loginUser(request, response) {
 }
 
 
-async function getConteudo(request, response) {
-    let query = "SELECT * FROM Polygon2Data, Polygon1Data;";
+async function getData2(request, response) {
+    let query = "SELECT * FROM Polygon1Data;";
 
     connection.query(query, (err, results) => {
         console.log(err, results)
@@ -86,8 +86,54 @@ async function getConteudo(request, response) {
 }
 
 
+async function getData1(request, response) {
+    let query = "SELECT * FROM Polygon2Data;";
+
+    connection.query(query, (err, results) => {
+        console.log(err, results)
+        if(results) {
+            response
+                .status(200)
+                .json({
+                    success: true,
+                    message: "cebolas choram e sua vitoria é celebrada",
+                    data: results
+                })
+        }
+    })
+}
+async function storeArquive(request, response) {
+    const { titulo, resumo } = request.body;
+    const arquivo = request.file.filename;
+
+    const params = Array(
+        titulo,
+        resumo,
+        arquivo
+    );
+}
+async function getData3(request, response) {
+    let query = "SELECT * FROM Files;";
+
+    connection.query(query, (err, results) => {
+        console.log(err, results)
+        if(results) {
+            response
+                .status(200)
+                .json({
+                    success: true,
+                    message: "cebolas choram e sua vitoria é celebrada",
+                    data: results
+                })
+        }
+    })
+}
+
 module.exports = {
     storeUser,
-    getConteudo,
+    getData2,
+    getData1,
+    getData3,
+    storeArquive,
     loginUser
 }

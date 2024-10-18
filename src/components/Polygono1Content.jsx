@@ -61,7 +61,7 @@ const Polygono1Content = () => {
     const [polygonData, setPolygonData] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:3005/api/pulldata')
+        axios.get('http://localhost:3005/api/pullData2')
             .then(response => {
                 setPolygonData(response.data);
             })
@@ -87,7 +87,6 @@ const Polygono1Content = () => {
                     <img 
                         src={polygon.image_url} 
                         alt={polygon.title} 
-                        className="polygon-image"
                     />
                     <p className="polygon-description">{polygon.description}</p>
                 </div>

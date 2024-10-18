@@ -1,0 +1,153 @@
+/* Estilo do container principal da Home */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: #1e1e2f; /* Fundo azul escuro */
+    color: #e0e0e0; /* Texto claro */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Título da página */
+.home h1 {
+    font-size: 2.5rem;
+    color: #ffffff; /* Texto branco */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Descrição curta da plataforma */
+.home p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #d3d3d3; /* Texto cinza claro */
+}
+
+/* Formulário de Upload */
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #1a1a1a; /* Fundo escuro para destacar o formulário */
+    border-radius: 10px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Campos do formulário */
+.upload-form input[type="text"],
+.upload-form textarea,
+.upload-form input[type="file"] {
+    padding: 10px;
+    font-size: 1rem;
+    margin: 10px 0;
+    border: 1px solid #666; /* Borda cinza */
+    background-color: #2a2a3b; /* Fundo cinza escuro */
+    color: #ffffff; /* Texto branco */
+    border-radius: 5px;
+}
+
+/* Botão do formulário */
+.upload-form button {
+    padding: 10px;
+    font-size: 1.2rem;
+    color: #ffffff; /* Texto branco */
+    background-color: #007bff; /* Fundo azul escuro */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-form button:hover {
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+}
+
+/* Container dos cartões */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Estilo para os cartões */
+.card {
+    background: #1a1a1a; /* Fundo escuro */
+    color: #e0e0e0; /* Texto claro */
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 80%;
+    border-radius: 10px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: #66b2ff; /* Azul claro para destacar os títulos */
+    margin-bottom: 15px;
+}
+
+.card-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #d3d3d3; /* Texto cinza claro */
+    margin-bottom: 15px;
+}
+
+.card-link {
+    color: #1a75ff; /* Azul para links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.card-link:hover {
+    color: #66b2ff; /* Azul mais claro ao passar o mouse */
+}
+
+/* Container de Sobre */
+.about-container {
+    padding: 20px;
+    margin: 20px;
+    background-color: #091A32; /* Fundo azul escuro */
+    color: #ffffff; /* Texto branco */
+    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Título de Sobre */
+.about-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #007bff; /* Texto azul escuro */
+    text-align: center;
+}
+
+/* Descrição de Sobre */
+.about-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #d3d3d3; /* Texto cinza claro */
+    text-align: justify;
+    margin-bottom: 20px;
+}
