@@ -1,6 +1,6 @@
 const app = require('./app');
 
-const PORT = app.get('port');
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => console.log(`Running at port ${PORT}`));
 
@@ -15,10 +15,11 @@ const swaggerOptions = {
             version: "1.0.0",
             description: "API CRUD para gerenciar rotas",
         },
-        servers: [{ url: "http://localhost:3005"}]
+        servers: [{ url: `http://localhost:${PORT}`}]
     },
     apis: [`${__dirname}/routes/*.js`],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+

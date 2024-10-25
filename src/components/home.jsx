@@ -1,26 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './css.css';
 
-function Home() {
-  const [cards, setCards] = useState([]);
+function UploadArquivo() {
   const [formData, setFormData] = useState({
     titulo: '',
     resumo: '',
     file: null,
   });
   const [message, setMessage] = useState('');
-
-  // Buscar dados do banco de dados na montagem do componente
-  useEffect(() => {
-    axios.get('http://localhost:3005/api/pullData3') // Ajuste o endpoint para o seu backend
-      .then(response => {
-        setCards(response.data.data); // Assumindo que a resposta contém um objeto com a chave `data`
-      })
-      .catch(error => {
-        console.error('Erro ao buscar dados do banco de dados', error);
-      });
-  }, []);
 
   // Manipuladores do Formulário
   const handleInputChange = (e) => {
@@ -42,17 +30,16 @@ function Home() {
     data.append('file', formData.file);
 
     // Enviar dados para o backend via POST
-    axios.post('http://localhost:3005/api/upload/arquive', data, {
+    axios.post(`http://localhost:3009/api/upload/arquivo`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     })
       .then(response => {
-        // Atualizar a lista de cartões com o novo dado retornado do servidor
-        setCards([...cards, response.data.data]);
+        setMessage('Arquivo armazenado com sucesso!');
+        console.log('Resposta do servidor:', response.data);
         // Resetar o formulário após o upload
         setFormData({ titulo: '', resumo: '', file: null });
-        setMessage('Arquivo enviado com sucesso!');
       })
       .catch(error => {
         console.error('Erro ao enviar dados para o banco de dados', error);
@@ -61,12 +48,11 @@ function Home() {
   };
 
   return (
-    <div className="home">
-      {/* Título da página inicial */}
-      <h1>Arquivos do Nautiscope</h1>
+    <div className="upload-container">
+      <h1>Enviar Arquivo</h1>
 
-      {/* Descrição curta da plataforma */}
-      <p>Explore arquivos e resumos detalhados sobre as profundezas do oceano, com nossas visualizações abrangentes de dados batimétricos.</p>
+      {/* Mensagem de feedback ao usuário */}
+      {message && <p className="feedback-message">{message}</p>}
 
       {/* Formulário para upload de arquivos */}
       <form className="upload-form" onSubmit={handleSubmit}>
@@ -92,30 +78,8 @@ function Home() {
         />
         <button type="submit">Enviar Arquivo</button>
       </form>
-
-      {/* Mensagem de Feedback */}
-      {message && <p className="feedback-message">{message}</p>}
-
-      {/* Renderizar cartões dinâmicos */}
-      <div className="card-container">
-        {cards.length > 0 ? (
-          cards.map((card, index) => (
-            <div key={card.id} className="card">
-              <h3 className="card-title">{card.titulo}</h3>
-              <p className="card-content">{card.resumo}</p>
-              {card.file_url && (
-                <a href={card.file_url} className="card-link" target="_blank" rel="noopener noreferrer">
-                  Visualizar Arquivo
-                </a>
-              )}
-            </div>
-          ))
-        ) : (
-          <p>Nenhum arquivo disponível no momento.</p>
-        )}
-      </div>
     </div>
   );
 }
 
-export default Home;
+export default UploadArquivo;

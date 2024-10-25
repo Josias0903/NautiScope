@@ -57,11 +57,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Poligono.css'; // Importando o CSS
 
+const PORT = 3009;
+
 const Polygono1Content = () => {
     const [polygonData, setPolygonData] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:3005/api/pullData2')
+        axios.get(`http://localhost:${PORT}/api/pullData2`)
             .then(response => {
                 setPolygonData(response.data);
             })

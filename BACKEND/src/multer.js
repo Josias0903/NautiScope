@@ -1,17 +1,31 @@
 const express = require('express');
 const multer = require('multer');
-const mysql = require('mysql');
+const mysql = require('mysql2');
+const path = require('path');
 const app = express();
-const PORT = 3005;
+const PORT = process.env.PORT;
 
-// Configuração do MySQL
+// Configuração do multer para salvar arquivos localmente
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const uploadPath = 'uploads/';
+    cb(null, uploadPath); // Diretório onde os arquivos serão salvos
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Nome único para o arquivo
+  }
+});
+const upload = multer({ storage: storage });
+
+// Configuração do banco de dados MySQL
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'sua_senha',
-  database: 'nome_do_banco_de_dados'
+  password: 'root', // Altere para a senha do seu banco de dados
+  database: 'nautiscope' // Altere para o nome do seu banco de dados
 });
 
+// Verifica a conexão com o banco de dados
 connection.connect((err) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
@@ -20,25 +34,19 @@ connection.connect((err) => {
   }
 });
 
-// Configuração do multer para salvar arquivos localmente
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Diretório onde os arquivos serão salvos
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // Garante um nome único
-  }
-});
-const upload = multer({ storage: storage });
-
-// Middleware para aceitar JSON no Express
+// Middleware para aceitar JSON e formulários no Express
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Middleware para servir arquivos estáticos (arquivos enviados)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Endpoint para buscar todos os dados do banco
 app.get('/api/pullData3', (req, res) => {
-  const query = "SELECT * FROM Files";
+  const query = "SELECT * FROM files"; // Altere o nome da tabela conforme necessário
   connection.query(query, (err, results) => {
     if (err) {
+      console.error('Erro ao buscar dados do banco de dados:', err);
       return res.status(500).json({ success: false, message: 'Erro ao buscar dados', err });
     }
     res.status(200).json({ success: true, data: results });
@@ -46,10 +54,11 @@ app.get('/api/pullData3', (req, res) => {
 });
 
 // Endpoint POST para fazer upload e salvar no banco de dados
-app.post('/api/upload/arquive', upload.single('file'), (req, res) => {
+app.post('/api/upload/arquivo', upload.single('file'), (req, res) => {
   const { titulo, resumo } = req.body;
   const file = req.file;
 
+  // Verificação de campos necessários
   if (!titulo || !resumo || !file) {
     return res.status(400).json({ success: false, message: "Faltam informações necessárias para o upload." });
   }
@@ -77,7 +86,6 @@ app.post('/api/upload/arquive', upload.single('file'), (req, res) => {
   });
 });
 
-// Inicializar o servidor
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
+
+
+module.exports = upload;
