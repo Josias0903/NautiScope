@@ -4,7 +4,7 @@ async function storeUser(request, response) {
     const params = [
         request.body.nome,
         request.body.email,
-        request.body.senha 
+        request.body.senha
     ];
 
     const query = "INSERT INTO users(name,email,password) VALUES(?,?,?);";
@@ -73,7 +73,7 @@ async function getData2(request, response) {
 
     connection.query(query, (err, results) => {
         console.log(err, results)
-        if(results) {
+        if (results) {
             response
                 .status(200)
                 .json({
@@ -91,7 +91,7 @@ async function getData1(request, response) {
 
     connection.query(query, (err, results) => {
         console.log(err, results)
-        if(results) {
+        if (results) {
             response
                 .status(200)
                 .json({
@@ -111,13 +111,37 @@ async function storeArquive(request, response) {
         resumo,
         arquivo
     );
+
+    console.log(params);
+
+    const query = "INSERT INTO file(titulo,resumo,arquivo) VALUES(?,?,?);";
+
+    connection.query(query, params, (err, results) => {
+        console.log(err)
+        if (results) {
+            response.status(200).json({
+                success: true,
+                message: "Sucesso",
+                data: results
+            });
+        } else {
+            response.status(400).json({
+                success: false,
+                message: "Sem Sucesso",
+                data: results
+            });
+        }
+    });
 }
+
+
+
 async function getData3(request, response) {
-    let query = "SELECT * FROM Files;";
+    let query = "SELECT * FROM file;";
 
     connection.query(query, (err, results) => {
         console.log(err, results)
-        if(results) {
+        if (results) {
             response
                 .status(200)
                 .json({
@@ -129,6 +153,41 @@ async function getData3(request, response) {
     })
 }
 
+// async function getData3(request, response) {
+//     const query = `
+//     SELECT id, 
+//     FROM file
+//     WHERE file.id = ?`;
+
+//     connection.query(query,(err, results) => {
+//         if (err) {
+//             return response.status(500).json({
+//                 success: false,
+//                 message: "Erro no servidor",
+//                 error: err
+//             });
+//         }
+
+//         if (results.length > 0) {
+//             // Inicia a construção da string HTML
+//             let html = '<ul>';
+//             results.forEach(row => {
+//                 // variavel que recebe o return da função
+//                 // Substitua 'nome_do_jogo' pela lógica correta para obter o nome do jogo a partir do id_jogo
+//                 const filename = row.filename; // Ajuste isso para pegar o nome real do jogo
+//                 html += `<li>${filename}</li>`;
+//             });
+//             html += '</ul>';
+
+//             return response.send(html);
+//         } else {
+//             return response.status(404).json({
+//                 success: false,
+//                 message: "Request não encontrado"
+//             });
+//         }
+//     });
+// }
 module.exports = {
     storeUser,
     getData2,

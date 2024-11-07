@@ -13,7 +13,7 @@ function App() {
       <div>
         <nav>
           <ul>
-            <li><a href="/">Home</a></li>
+            <li><a href="/">Feed</a></li>
             <li><a href="/data">Mapa</a></li>
             <li><a href="/about">Sobre</a></li>
             <li><a href="./login/cadastro.html">Cadastro</a></li>

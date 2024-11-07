@@ -1,5 +1,5 @@
-/* Estilo do container principal da Home */
-.home {
+/* Estilo do container principal de Upload */
+.upload-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,21 +10,19 @@
 }
 
 /* Título da página */
-.home h1 {
+.upload-container h1 {
     font-size: 2.5rem;
     color: #ffffff; /* Texto branco */
     margin-bottom: 20px;
     text-align: center;
 }
 
-/* Descrição curta da plataforma */
-.home p {
+/* Mensagem de feedback ao usuário */
+.feedback-message {
     font-size: 1.2rem;
-    line-height: 1.5;
-    max-width: 600px;
+    margin: 20px 0;
+    color: #66b2ff; /* Azul claro para destacar as mensagens */
     text-align: center;
-    margin-bottom: 40px;
-    color: #d3d3d3; /* Texto cinza claro */
 }
 
 /* Formulário de Upload */
@@ -70,84 +68,58 @@
     background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
 }
 
-/* Container dos cartões */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+/* Container da lista de arquivos */
+.file-list {
     width: 100%;
-    max-width: 1200px;
-}
-
-/* Estilo para os cartões */
-.card {
-    background: #1a1a1a; /* Fundo escuro */
-    color: #e0e0e0; /* Texto claro */
+    max-width: 800px;
     padding: 20px;
-    margin: 20px auto;
-    max-width: 80%;
+    background-color: #1a1a1a; /* Fundo escuro */
     border-radius: 10px;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
+}
+
+.file-list h2 {
+    font-size: 2rem;
+    color: #66b2ff; /* Azul claro para destacar os títulos */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo para os itens da lista de arquivos */
+.file-item {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #2a2a3b; /* Fundo cinza escuro */
+    border-radius: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
-    transform: translateY(-10px);
+.file-item:hover {
+    transform: translateY(-5px);
     box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.7);
 }
 
-.card-title {
+.file-item h3 {
     font-size: 1.5rem;
     color: #66b2ff; /* Azul claro para destacar os títulos */
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-.card-content {
+.file-item p {
     font-size: 1rem;
     line-height: 1.6;
     color: #d3d3d3; /* Texto cinza claro */
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-.card-link {
+.file-item a {
     color: #1a75ff; /* Azul para links */
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-.card-link:hover {
+.file-item a:hover {
     color: #66b2ff; /* Azul mais claro ao passar o mouse */
-}
-
-/* Container de Sobre */
-.about-container {
-    padding: 20px;
-    margin: 20px;
-    background-color: #091A32; /* Fundo azul escuro */
-    color: #ffffff; /* Texto branco */
-    border-radius: 10px;
-    font-family: 'Arial', sans-serif;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Título de Sobre */
-.about-title {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #007bff; /* Texto azul escuro */
-    text-align: center;
-}
-
-/* Descrição de Sobre */
-.about-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #d3d3d3; /* Texto cinza claro */
-    text-align: justify;
-    margin-bottom: 20px;
 }

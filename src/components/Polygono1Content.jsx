@@ -63,7 +63,7 @@ const Polygono1Content = () => {
     const [polygonData, setPolygonData] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:${PORT}/api/pullData2`)
+        axios.get(`http://localhost:3009/api/pullData2`)
             .then(response => {
                 setPolygonData(response.data);
             })
