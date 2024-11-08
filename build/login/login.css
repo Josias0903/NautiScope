@@ -1,0 +1,79 @@
+/* login.css */
+
+/* Estilo para o corpo */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a1b36; /* Fundo escuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo para o título */
+#title {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o cartão de autenticação */
+.auth-card {
+    background-color: #2d2f48; /* Cor de fundo do formulário */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para o formulário de autenticação */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para os campos de entrada */
+.auth-input {
+    background-color: #343653; /* Cor de fundo dos inputs */
+    color: white; /* Cor do texto nos inputs */
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Estilo para o botão de autenticação */
+.auth-button {
+    background-color: #007bff; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo do botão ao passar o mouse */
+.auth-button:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilo para o link de login */
+.auth-form p {
+    color: white;
+    text-align: center;
+}
+
+.auth-form a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}

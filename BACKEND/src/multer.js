@@ -39,7 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Middleware para servir arquivos estáticos (arquivos enviados)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static(path.join(__dirname , 'uploads')));
 
 // Endpoint para buscar todos os dados do banco
 app.get('/api/pullData3', (req, res) => {

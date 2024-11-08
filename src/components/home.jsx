@@ -188,7 +188,7 @@ function UploadArquivo() {
                 <h3>{file.titulo}</h3>
                 <p>{file.resumo}</p>
                 {file.arquivo && (
-                  <a href={`../../BACKEND/uploads/${file.arquivo}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`http://localhost:3009/uploads/${file.arquivo}`} target="_blank" rel="noopener noreferrer">
                     Visualizar Arquivo
                   </a>
                 )}

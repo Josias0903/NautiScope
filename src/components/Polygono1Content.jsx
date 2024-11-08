@@ -57,7 +57,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Poligono.css'; // Importando o CSS
 
-const PORT = 3009;
 
 const Polygono1Content = () => {
     const [polygonData, setPolygonData] = useState(null);
