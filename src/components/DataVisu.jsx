@@ -8,7 +8,7 @@ const { BaseLayer, Overlay } = LayersControl; // Desestruturação para facilita
 
 // Definição de um ícone personalizado para os marcadores no mapa
 const customIcon = L.icon({
-  iconUrl: "./src/images/pin.png", // Caminho para a imagem do ícone
+  iconUrl: "./images/pin.png", // Caminho para a imagem do ícone
   iconSize: [32, 32], // Tamanho do ícone
   iconAnchor: [16, 32], // Ponto de ancoragem do ícone (centro inferior)
   popupAnchor: [0, -32] // Ponto de abertura do popup em relação ao ícone
@@ -16,10 +16,10 @@ const customIcon = L.icon({
 
 // Coordenadas para o contorno do primeiro polígono (Area Outline 1)
 const polygonCoordinates1 = [
-  [-33.137551, 5.110829],
-  [-25.394548, -23.639098],
-  [-9.327663, -27.833755],
-  [-9.3041, -0.615224],
+  [-33.137551, -7.110829],
+  [-30.394548, -23.639098],
+  [-9.482889, -26.959653],
+  [-9.3041, -4.615224],
 ];
 
 // Coordenadas para o contorno do segundo polígono (Area Outline 2)
