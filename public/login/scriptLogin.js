@@ -21,7 +21,7 @@ loginButton.onclick = async function () {
         console.log('Storing id_usuario:', results.id_usuario);  // Debugging
         // Redirecionar ou fazer algo após o login
         localStorage.setItem('id_usuario', results.id_usuario);  // Store user ID
-        window.location.href = "home.html";
+        window.location.href = "home.jsx";
         
     } else {
         alert("Falha no login: " + results.message);

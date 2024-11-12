@@ -3,15 +3,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
     background-color: #1e1e2f; /* Fundo azul escuro */
     color: #e0e0e0; /* Texto claro */
     font-family: 'Arial', sans-serif;
+    position: fixed;
+    right: 20px;
+    top: 200px; /* Deixa espaço para o header e a imagem do logo */
+    height: calc(100% - 220px);
+    width: 30%;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    border-radius: 10px;
 }
 
 /* Título da página */
 .upload-container h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #ffffff; /* Texto branco */
     margin-bottom: 20px;
     text-align: center;
@@ -32,7 +40,7 @@
     gap: 15px;
     margin-bottom: 40px;
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     padding: 20px;
     background-color: #1a1a1a; /* Fundo escuro para destacar o formulário */
     border-radius: 10px;
@@ -70,13 +78,16 @@
 
 /* Container da lista de arquivos */
 .file-list {
-    width: 100%;
-    max-width: 800px;
+    position: fixed;
+    left: 20px;
+    top: 200px; /* Deixa espaço para o header e a imagem do logo */
+    height: calc(100% - 220px);
+    width: 60%;
     padding: 20px;
     background-color: #1a1a1a; /* Fundo escuro */
     border-radius: 10px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
-    margin-bottom: 40px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
 }
 
 .file-list h2 {

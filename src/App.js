@@ -6,6 +6,7 @@ import About from './components/Sobre';
 import Polygon1Content from './components/Polygono1Content'; 
 import Polygon2Content from './components/Polygono2Content'; 
 import './App.css';
+import LandingPage from './components/landing';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <div>
         <nav>
           <ul>
-            <li><a href="/">Feed</a></li>
+            <li><a href="/home">Feed</a></li>
             <li><a href="/data">Mapa</a></li>
             <li><a href="/about">Sobre</a></li>
             <li><a href="./login/cadastro.html">Cadastro</a></li>
@@ -21,7 +22,8 @@ function App() {
           </ul>
         </nav>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={< Home/>} />
           <Route path="/data" element={<DataVisualization />} />
           <Route path="/about" element={<About />} />
           <Route path="/polygon1-content" element={<Polygon1Content />} /> 
