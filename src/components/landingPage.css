@@ -2,13 +2,14 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #1e1e2f;
     color: #e0e0e0;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-
+/* Landing Container */
 .landing-container {
     display: flex;
     flex-direction: column;
@@ -27,19 +28,39 @@ body {
     width: 100%;
     top: 0;
     z-index: 1000;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .img-logo {
-max-width:20% ;}
+    max-width: 20%;
+    transition: transform 0.3s ease;
+}
+
+.img-logo:hover {
+    transform: scale(1.1);
+}
 
 .nav-menu {
     display: flex;
+    border-radius: 10px;
     gap: 20px;
 }
 
 .nav-menu a {
     color: #e0e0e0;
     text-decoration: none;
+    font-weight: bold;
     transition: color 0.3s ease;
 }
 
@@ -47,21 +68,62 @@ max-width:20% ;}
     color: #66b2ff;
 }
 
-/* Hero Section */
+/* Hero Section com Animação de Background */
 .hero-section {
     height: 100vh;
-    background: linear-gradient(to bottom, #0056b3, #003366);
+    background: linear-gradient(45deg, #579eea, #04386c, #167ee6);
+    background-size: 300% 300%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding-top: 60px;
+    overflow: hidden;
+    position: relative;
+    animation: gradientBackground 5s ease infinite;
+}
+
+/* Animação de Background Gradiente */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+@keyframes parallaxBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
+.hero-content {
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
     color: #ffffff;
     margin-bottom: 20px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
 }
 
 .hero-content p {
@@ -78,11 +140,13 @@ max-width:20% ;}
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .cta-button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 /* Features Section */
@@ -90,6 +154,18 @@ max-width:20% ;}
     padding: 60px 20px;
     background-color: #1a1a2e;
     text-align: center;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .features-section h2 {
@@ -111,11 +187,12 @@ max-width:20% ;}
     border-radius: 10px;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
     max-width: 300px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature:hover {
     transform: translateY(-10px);
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.7);
 }
 
 .feature h3 {
@@ -129,6 +206,18 @@ max-width:20% ;}
     padding: 60px 20px;
     background-color: #121212;
     text-align: center;
+    animation: slideIn 1.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .about-section h2 {
@@ -142,6 +231,10 @@ max-width:20% ;}
     max-width: 800px;
     margin: 0 auto;
     color: #d3d3d3;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* Contact Section */
@@ -149,6 +242,18 @@ max-width:20% ;}
     padding: 60px 20px;
     background-color: #1a1a2e;
     text-align: center;
+    animation: zoomIn 1.5s ease-in-out;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .contact-section h2 {
@@ -177,4 +282,10 @@ max-width:20% ;}
 .footer p {
     margin: 0;
     font-size: 1rem;
-} 
+}
+
+/* Button Animations */
+.cta-button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}

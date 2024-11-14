@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import image1 from "../images/Ilha de trindade João Luiz Gasparini.jpg";
+import image2 from "../images/Ilha de trindade 2.jpg";
 import './Poligono.css'; // Importando o CSS
 
 const Polygono2Content = () => {
@@ -30,14 +32,14 @@ const Polygono2Content = () => {
                 <div key={index} className="polygon-card">
                     <h3>{polygon.title}</h3>
                     <img 
-                        src={polygon.image_url} 
+                        src={index % 2 === 0 ? image1 : image2} 
                         alt={polygon.title} 
                         className="polygon-image"
                     />
                     <p className="polygon-description">{polygon.description}</p>
                 </div>
             ))}
-            <a href="/" className="back-button">Voltar</a>
+            <a href="/data" className="back-button">Voltar</a>
         </div>
     );
 };

@@ -2,27 +2,27 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup, LayersControl, Polygon } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useNavigate } from 'react-router-dom'; // Hook para navegação entre páginas
+import pinIcon from "../images/pin.png";
+import { useNavigate } from 'react-router-dom';
 
-const { BaseLayer, Overlay } = LayersControl; // Desestruturação para facilitar o uso das subcomponentes
+const { BaseLayer, Overlay } = LayersControl;
 
-// Definição de um ícone personalizado para os marcadores no mapa
 const customIcon = L.icon({
-  iconUrl: "./images/pin.png", // Caminho para a imagem do ícone
+  iconUrl: pinIcon, // Caminho para a imagem do ícone
   iconSize: [32, 32], // Tamanho do ícone
   iconAnchor: [16, 32], // Ponto de ancoragem do ícone (centro inferior)
   popupAnchor: [0, -32] // Ponto de abertura do popup em relação ao ícone
 });
 
-// Coordenadas para o contorno do primeiro polígono (Area Outline 1)
 const polygonCoordinates1 = [
-  [-33.137551, -7.110829],
-  [-30.394548, -23.639098],
-  [-9.482889, -26.959653],
-  [-9.3041, -4.615224],
+  [-27.584276, -10.010303],
+  [-32.078358, -13.526398],
+  [-29.053484, -16.427176],
+  [-11.077821, -17.306199],
+  [-2.011405, -13.26269],
+  [-9.262182, -9.394986],
 ];
 
-// Coordenadas para o contorno do segundo polígono (Area Outline 2)
 const polygonCoordinates2 = [
   [-20.5999, -39.2114],
   [-21.6860, -37.6296],
@@ -36,71 +36,64 @@ const polygonCoordinates2 = [
   [-18.7170, -36.5531],
 ];
 
-// Coordenadas dos marcadores (posicionadas aproximadamente no centro de cada polígono)
-const markerCoordinates1 = [-22.0, -13.0];  // Ajuste para o centro do Polígono 1
-const markerCoordinates2 = [-20.0, -34.0];  // Ajuste para o centro do Polígono 2
+const markerCoordinates1 = [-22.0, -13.0];
+const markerCoordinates2 = [-20.0, -34.0];
 
 function DataVisualization() {
-  const navigate = useNavigate(); // Hook para navegação entre páginas
+  const navigate = useNavigate();
 
-  // Função para lidar com o clique no primeiro polígono
   const handlePolygonClick1 = () => {
-    navigate('/polygon1-content'); // Navega para a página de conteúdo do Polígono 1
+    navigate('/polygon1-content');
   };
 
-  // Função para lidar com o clique no segundo polígono
   const handlePolygonClick2 = () => {
-    navigate('/polygon2-content'); // Navega para a página de conteúdo do Polígono 2
+    navigate('/polygon2-content');
   };
 
   return (
     <div id="map-container">
-      <h1>NautiScope</h1> {/* Título da página */}
+      <h1>NautiScope</h1>
       <MapContainer 
-        center={[-10, -30]} // Centraliza o mapa no Oceano Atlântico
-        zoom={3} 
-        style={{ height: "500px", width: "100%" }} // Define a altura e largura do mapa
+        center={[-10, -30]}
+        zoom={3}
+        style={{ height: "500px", width: "100%" }}
         maxBounds={[
-          [-50, -80],  // Limite sudoeste (aproximado)
-          [20, 20]     // Limite nordeste (aproximado)
+          [-50, -80],
+          [20, 20]
         ]}
-        maxBoundsViscosity={1.0} // Evita que o mapa seja movido para fora dos limites
-        minZoom={3} // Define o nível mínimo de zoom
-        maxZoom={8} // Define o nível máximo de zoom
-        noWrap={true} // Evita a repetição do mapa nas bordas
+        maxBoundsViscosity={1.0}
+        minZoom={3}
+        maxZoom={8}
+        noWrap={true}
       >
         <LayersControl position="topright">
-          {/* Camada base do mapa - Imagem mundial */}
           <BaseLayer checked name="World Imagery">
             <TileLayer
               url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
               attribution='&copy; <a href="https://www.esri.com/en-us/home">Esri</a>'
-              noWrap={true} // Evita a repetição do tile layer
+              noWrap={true}
             />
           </BaseLayer>
-          {/* Camada base do mapa - OpenStreetMap */}
           <BaseLayer name="OpenStreetMap">
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              noWrap={true} // Evita a repetição do tile layer
+              noWrap={true}
             />
           </BaseLayer>
-          {/* Sobreposição - Primeiro polígono e marcador associado */}
           <Overlay checked name="Area Outline 1">
             <Polygon positions={polygonCoordinates1} color="blue" eventHandlers={{ click: handlePolygonClick1 }} />
             <Marker position={markerCoordinates1} icon={customIcon}>
               <Popup>
-                <strong>Cadeia Dorsal Atlântico Sul</strong> {/* Texto exibido ao clicar no marcador */}
+                <strong>Cadeia Dorsal Atlântico Sul</strong>
               </Popup>
             </Marker>
           </Overlay>
-          {/* Sobreposição - Segundo polígono e marcador associado */}
           <Overlay checked name="Area Outline 2">
             <Polygon positions={polygonCoordinates2} color="red" eventHandlers={{ click: handlePolygonClick2 }} />
             <Marker position={markerCoordinates2} icon={customIcon}>
               <Popup>
-                <strong>Cadeia Vitória Trindade</strong> {/* Texto exibido ao clicar no marcador */}
+                <strong>Cadeia Vitória Trindade</strong>
               </Popup>
             </Marker>
           </Overlay>
